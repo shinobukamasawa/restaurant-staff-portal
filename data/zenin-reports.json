@@ -1,0 +1,26 @@
+[
+  {
+    "id": "zenin-1770801088507-gffdurp",
+    "date": "2026-02-10",
+    "storeId": "store-a",
+    "userId": "manager",
+    "condition": "問題なし",
+    "busyLevel": "余裕",
+    "trouble": "特になし",
+    "goodPoint": "接客でうまくいった",
+    "memo": "一言メモーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー",
+    "createdAt": "2026-02-11T09:11:28.507Z"
+  },
+  {
+    "id": "zenin-1770801180943-bjab5lt",
+    "date": "2026-02-11",
+    "storeId": "store-a",
+    "userId": "manager",
+    "condition": "問題なし",
+    "busyLevel": "ちょうど良い",
+    "trouble": "機械・品切れ",
+    "goodPoint": "特になし",
+    "memo": "ーーーーーーーーーーーーーーー",
+    "createdAt": "2026-02-11T09:13:00.943Z"
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "storeId": "store-a",
+    "yearMonth": "2026-02",
+    "amount": 2000000
+  },
+  {
+    "storeId": "store-b",
+    "yearMonth": "2026-02",
+    "amount": 350000
+  }
+]

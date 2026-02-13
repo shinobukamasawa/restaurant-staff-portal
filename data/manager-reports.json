@@ -1,0 +1,33 @@
+[
+  {
+    "id": "mgr-1770730933079-2znfc97",
+    "date": "2026-02-10",
+    "storeId": "store-a",
+    "salesEvaluation": "目標大幅超過",
+    "storeCondition": "とても良い",
+    "staffing": "ちょうど良い",
+    "events": [
+      "クレーム"
+    ],
+    "themes": [
+      "接客品質"
+    ],
+    "memo": "テスト店長・マネージャー日報",
+    "createdAt": "2026-02-10T13:42:13.079Z"
+  },
+  {
+    "id": "mgr-1770801226708-83plr0h",
+    "date": "2026-02-11",
+    "storeId": "store-a",
+    "salesEvaluation": "目標達成",
+    "storeCondition": "普通",
+    "staffing": "余裕あり",
+    "events": [
+      "スタッフ体調不良"
+    ],
+    "themes": [],
+    "memo": "てんちょー",
+    "combinedSummary": "【全員日報】\n・体調: 問題なし / 忙しさ: ちょうど良い / 困ったこと: 機械・品切れ / 良かったこと: 特になし / メモ: ーーーーーーーーーーーーーーー",
+    "createdAt": "2026-02-11T09:13:46.709Z"
+  }
+]

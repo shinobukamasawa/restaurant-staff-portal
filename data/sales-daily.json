@@ -1,0 +1,52 @@
+[
+  {
+    "storeId": "store-a",
+    "date": "2026-02-01",
+    "amount": 150000
+  },
+  {
+    "storeId": "store-a",
+    "date": "2026-02-02",
+    "amount": 100000
+  },
+  {
+    "storeId": "store-a",
+    "date": "2026-02-03",
+    "amount": 100000
+  },
+  {
+    "storeId": "store-a",
+    "date": "2026-02-04",
+    "amount": 100000
+  },
+  {
+    "storeId": "store-a",
+    "date": "2026-02-05",
+    "amount": 100000
+  },
+  {
+    "storeId": "store-a",
+    "date": "2026-02-06",
+    "amount": 100000
+  },
+  {
+    "storeId": "store-a",
+    "date": "2026-02-07",
+    "amount": 150000
+  },
+  {
+    "storeId": "store-a",
+    "date": "2026-02-08",
+    "amount": 150000
+  },
+  {
+    "storeId": "store-a",
+    "date": "2026-02-09",
+    "amount": 100000
+  },
+  {
+    "storeId": "store-a",
+    "date": "2026-02-10",
+    "amount": 100000
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "ts-1770801257631-bpy8bd5",
+    "date": "2026-02-11",
+    "storeId": "store-a",
+    "timeSlotId": "lunch",
+    "userId": "manager",
+    "salesEvaluation": "達成",
+    "storeCondition": "良い",
+    "staffing": "ちょうど良い",
+    "events": [
+      "大口予約"
+    ],
+    "memo": "らんちーーーー",
+    "createdAt": "2026-02-11T09:14:17.631Z"
+  },
+  {
+    "id": "ts-1770801336616-baxft4u",
+    "date": "2026-02-11",
+    "storeId": "store-a",
+    "timeSlotId": "dinner",
+    "userId": "manager",
+    "salesEvaluation": "未達",
+    "storeCondition": "良い",
+    "staffing": "ぎりぎり",
+    "events": [
+      "大口予約"
+    ],
+    "memo": "でぃなーーー",
+    "createdAt": "2026-02-11T09:15:36.616Z"
+  }
+]

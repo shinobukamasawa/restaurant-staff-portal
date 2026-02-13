@@ -1,0 +1,279 @@
+{
+  "period": {
+    "start_date": "2026-02-07",
+    "end_date": "2026-02-11"
+  },
+  "reports_count": 2,
+  "sales_status": {
+    "busy_trend": "high",
+    "peaks": [
+      {
+        "report_date": "2026-02-07",
+        "time_window": "afternoon 3:00 PM, evening 5:00 PM onwards",
+        "busy_level": "high",
+        "evidence": [
+          {
+            "report_date": "2026-02-07",
+            "quote": "午後3時頃には一度ピークが来たような気がします。そのあと少し落ち着いたかと思うと、夕方5時過ぎからまた一気に混み始めて"
+          }
+        ]
+      },
+      {
+        "report_date": "2026-02-11",
+        "time_window": "opening through evening",
+        "busy_level": "high",
+        "evidence": [
+          {
+            "report_date": "2026-02-11",
+            "quote": "開店前からお客様の列ができていて、開店と同時に一気に席が埋まり、その後もずっと満席に近い状態が続きました"
+          }
+        ]
+      }
+    ],
+    "special_notes": [
+      {
+        "type": "weekday_pattern",
+        "detail": "Friday (2026-02-07): increased customers before weekend",
+        "evidence": [
+          {
+            "report_date": "2026-02-07",
+            "quote": "2月7日、金曜日でした。週末前ということもあってお客様が多めで"
+          }
+        ]
+      },
+      {
+        "type": "holiday",
+        "detail": "National holiday (Founding Day) on 2026-02-11 led to very high traffic",
+        "evidence": [
+          {
+            "report_date": "2026-02-11",
+            "quote": "今日は2月11日、祝日で建国記念の日だったので、お休みの方が多くて本当に忙しかったです"
+          }
+        ]
+      }
+    ]
+  },
+  "ops_load": [
+    {
+      "report_date": "2026-02-07",
+      "load_level": "medium",
+      "staff_count_mentioned": "unknown",
+      "waiting_occurred": "yes",
+      "unhandled_scenes": [],
+      "evidence": [
+        {
+          "report_date": "2026-02-07",
+          "quote": "夕方からは待ちのお客様も出るほどでした"
+        }
+      ]
+    },
+    {
+      "report_date": "2026-02-11",
+      "load_level": "high",
+      "staff_count_mentioned": 2,
+      "waiting_occurred": "yes",
+      "unhandled_scenes": [
+        "ドリンク作成がボトルネック"
+      ],
+      "evidence": [
+        {
+          "report_date": "2026-02-11",
+          "quote": "ホールは自人のスタッフで回していて、注文を取るのもドリンクを出すのも片付けも全部で、もう右往左往という感じでした。お昼のピークのときは、お客様に少しお待ちいただくことがあって"
+        }
+      ]
+    }
+  ],
+  "incidents": [
+    {
+      "report_date": "2026-02-07",
+      "issue": "unspecified minor issue",
+      "severity": "low",
+      "recurrence_risk": "low",
+      "evidence": [
+        {
+          "report_date": "2026-02-07",
+          "quote": "トラブル: 軽微なものあり"
+        }
+      ]
+    },
+    {
+      "report_date": "2026-02-11",
+      "issue": "unspecified minor issue",
+      "severity": "low",
+      "recurrence_risk": "low",
+      "evidence": [
+        {
+          "report_date": "2026-02-11",
+          "quote": "トラブル: 軽微なものあり"
+        }
+      ]
+    }
+  ],
+  "special_handling": [
+    {
+      "report_date": "2026-02-07",
+      "category": "allergy",
+      "detail": "Customer allergy accommodation explanation communicated to kitchen",
+      "evidence": [
+        {
+          "report_date": "2026-02-07",
+          "quote": "お客様のご要望でアレルギー対応の説明を厨房に伝えに行ったり"
+        }
+      ]
+    },
+    {
+      "report_date": "2026-02-07",
+      "category": "kids",
+      "detail": "Multiple children's chairs provided for customers",
+      "evidence": [
+        {
+          "report_date": "2026-02-07",
+          "quote": "お子様用の椅子を何脚か出したりしていました"
+        }
+      ]
+    }
+  ],
+  "execution": {
+    "completed": [
+      "Opening preparation (2026-02-07)",
+      "Morning inventory check and replenishment list (2026-02-07)",
+      "Floor mopping and next-day prep (2026-02-07)",
+      "Sustained service through closure (2026-02-11)"
+    ],
+    "pending": [],
+    "inventory_or_prep_or_cleaning": [
+      {
+        "report_date": "2026-02-07",
+        "summary": "Morning inventory check conducted, replenishment list created. Evening floor mopping and next-day preparation completed.",
+        "evidence": [
+          {
+            "report_date": "2026-02-07",
+            "quote": "その間に冷蔵庫の在庫を確認したり、補充のリストをメモしたりしました。閉店後はフロアのモップがけと、明日の準備をして終了"
+          }
+        ]
+      },
+      {
+        "report_date": "2026-02-11",
+        "summary": "Ongoing preparation and restocking during service day",
+        "evidence": [
+          {
+            "report_date": "2026-02-11",
+            "quote": "業務: ホール接客, ドリンク作成, 片付け, 仕込み"
+          }
+        ]
+      }
+    ]
+  },
+  "staff_state": [
+    {
+      "report_date": "2026-02-07",
+      "fatigue_level": "medium",
+      "mood": "good",
+      "teamwork": "good",
+      "evidence": [
+        {
+          "report_date": "2026-02-07",
+          "quote": "少し疲れましたが、充実した一日でした。雰囲気: とても良い"
+        }
+      ]
+    },
+    {
+      "report_date": "2026-02-11",
+      "fatigue_level": "high",
+      "mood": "normal",
+      "teamwork": "good",
+      "evidence": [
+        {
+          "report_date": "2026-02-11",
+          "quote": "帰る頃にはくたくたでしたが、こういう日も経験として大事だなと思いました。雰囲気: 普通。大きなクレームもなく終われたのでほっとしています"
+        }
+      ]
+    }
+  ],
+  "improvements": [
+    {
+      "priority": "high",
+      "category": "staffing",
+      "proposal": "Increase floor staff during peak holiday hours and Friday evenings",
+      "reason": "On 2026-02-11 (holiday), only 2 staff members managed floor operations while customers waited and kitchen was overwhelmed. Holiday demand requires additional staffing.",
+      "evidence": [
+        {
+          "report_date": "2026-02-11",
+          "quote": "ホールは自人のスタッフで回していて、注文を取るのもドリンクを出すのも片付けも全部で、もう右往左往という感じでした。お昼のピークのときは、お客様に少しお待ちいただくことがあって"
+        }
+      ]
+    },
+    {
+      "priority": "medium",
+      "category": "operation",
+      "proposal": "Optimize table turnover procedures and pre-staging for peak times",
+      "reason": "2026-02-07 evening required rapid table clearing and re-setting; 2026-02-11 maintained near-full capacity all day with customers waiting. Streamlined processes could improve efficiency.",
+      "evidence": [
+        {
+          "report_date": "2026-02-07",
+          "quote": "テーブルターンも早くて、片付けとセッティングの繰り返しでした"
+        }
+      ]
+    },
+    {
+      "priority": "medium",
+      "category": "training",
+      "proposal": "Ensure kitchen staff training on allergy protocols",
+      "reason": "Allergy accommodation explanation required floor staff to communicate with kitchen, indicating need for standardized protocols.",
+      "evidence": [
+        {
+          "report_date": "2026-02-07",
+          "quote": "お客様のご要望でアレルギー対応の説明を厨房に伝えに行ったり"
+        }
+      ]
+    }
+  ],
+  "risk_warnings": [
+    {
+      "severity": "medium",
+      "warning": "Holiday periods and Fridays show significantly elevated demand with potential customer wait times and staff fatigue. Current staffing (2 floor staff on holiday) insufficient for sustained peak load.",
+      "evidence": [
+        {
+          "report_date": "2026-02-11",
+          "quote": "今日は2月11日、祝日で建国記念の日だったので、お休みの方が多くて本当に忙しかったです。お昼のピークのときは、お客様に少しお待ちいただくことがあって。帰る頃にはくたくたでした"
+        },
+        {
+          "report_date": "2026-02-07",
+          "quote": "2月7日、金曜日でした。週末前ということもあってお客様が多めで、夕方からは待ちのお客様も出るほどでした"
+        }
+      ]
+    },
+    {
+      "severity": "low",
+      "warning": "Unspecified minor incidents occurred on both report dates; categorization and root cause analysis recommended to prevent recurrence.",
+      "evidence": [
+        {
+          "report_date": "2026-02-07",
+          "quote": "トラブル: 軽微なものあり"
+        },
+        {
+          "report_date": "2026-02-11",
+          "quote": "トラブル: 軽微なものあり"
+        }
+      ]
+    }
+  ],
+  "overall_judgement": {
+    "label": "needs_improvement",
+    "reason": "Two consecutive report days show elevated demand (Friday + holiday) with customer wait times, high staff fatigue, and staffing constraints. While no major incidents occurred, the 2026-02-11 holiday operation revealed insufficient floor staffing (2 staff for full-capacity service). Morning operations on 2026-02-07 were manageable, but escalating afternoon/evening peaks and recurring minor issues suggest need for better peak-hour planning and resource allocation.",
+    "evidence": [
+      {
+        "report_date": "2026-02-11",
+        "quote": "ホールは自人のスタッフで回していて、注文を取るのもドリンクを出すのも片付けも全部で、もう右往左往という感じでした。お昼のピークのときは、お客様に少しお待ちいただくことがあって"
+      },
+      {
+        "report_date": "2026-02-07",
+        "quote": "夕方からは待ちのお客様も出るほどでした"
+      },
+      {
+        "report_date": "2026-02-11",
+        "quote": "帰る頃にはくたくたでした"
+      }
+    ]
+  }
+}

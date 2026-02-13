@@ -1,0 +1,177 @@
+```json
+{
+  "period": {
+    "start_date": "2026-02-07",
+    "end_date": "2026-02-11"
+  },
+  "reports_count": "2",
+  "sales_status": {
+    "busy_trend": "high",
+    "peaks": [
+      {
+        "report_date": "2026-02-07",
+        "time_window": "15:00 and 17:00-close",
+        "busy_level": "high",
+        "evidence": [
+          {
+            "report_date": "2026-02-07",
+            "quote": "午後3時頃には一度ピークが来たような気がします。そのあと少し落ち着いたかと思うと、夕方5時過ぎからまた一気に混み始めて"
+          },
+          {
+            "report_date": "2026-02-07",
+            "quote": "夕方からは待ちのお客様も出るほどでした"
+          }
+        ]
+      },
+      {
+        "report_date": "2026-02-11",
+        "time_window": "opening to evening",
+        "busy_level": "high",
+        "evidence": [
+          {
+            "report_date": "2026-02-11",
+            "quote": "開店前からお客様の列ができていて、開店と同時に一気に席が埋まり、その後もずっと満席に近い状態が続きました"
+          },
+          {
+            "report_date": "2026-02-11",
+            "quote": "午後もなかなか空きが出なくて、夕方まで混雑が続きました"
+          }
+        ]
+      }
+    ],
+    "special_notes": [
+      {
+        "type": "holiday",
+        "detail": "2026-02-11は建国記念の日（祝日）で、お休みの方が多かった",
+        "evidence": [
+          {
+            "report_date": "2026-02-11",
+            "quote": "今日は2月11日、祝日で建国記念の日だったので、お休みの方が多くて本当に忙しかったです"
+          }
+        ]
+      },
+      {
+        "type": "weekday_pattern",
+        "detail": "2026-02-07は金曜日で週末前のため客数が多め",
+        "evidence": [
+          {
+            "report_date": "2026-02-07",
+            "quote": "2月7日、金曜日でした。週末前ということもあってお客様が多めで"
+          }
+        ]
+      }
+    ]
+  },
+  "ops_load": {
+    "staffing": [
+      {
+        "report_date": "2026-02-11",
+        "load_level": "high",
+        "staff_count_mentioned": "2",
+        "waiting_occurred": "yes",
+        "unhandled_scenes": [
+          "注文取得",
+          "ドリンク提供",
+          "片付け"
+        ],
+        "evidence": [
+          {
+            "report_date": "2026-02-11",
+            "quote": "ホールは自分ともう一人のスタッフで回していて、注文を取るのもドリンクを出すのも片付けも全部で、もう右往左往という感じでした"
+          },
+          {
+            "report_date": "2026-02-11",
+            "quote": "お昼のピークのときは、お客様に少しお待ちいただくことがあって"
+          }
+        ]
+      },
+      {
+        "report_date": "2026-02-07",
+        "load_level": "medium",
+        "staff_count_mentioned": "unknown",
+        "waiting_occurred": "yes",
+        "unhandled_scenes": [],
+        "evidence": [
+          {
+            "report_date": "2026-02-07",
+            "quote": "テーブルターンも早くて、片付けとセッティングの繰り返しでした"
+          }
+        ]
+      }
+    ]
+  },
+  "incidents": [
+    {
+      "report_date": "2026-02-11",
+      "issue": "ホールスタッフ2名で全ての業務（注文、ドリンク、片付け）を同時回転させる必要があり、サービス品質と効率に圧力がかかった",
+      "severity": "medium",
+      "recurrence_risk": "high",
+      "evidence": [
+        {
+          "report_date": "2026-02-11",
+          "quote": "ホールは自分ともう一人のスタッフで回していて、注文を取るのもドリンクを出すのも片付けも全部で、もう右往左往という感じでした"
+        },
+        {
+          "report_date": "2026-02-11",
+          "quote": "お昼のピークのときは、お客様に少しお待ちいただくことがあって、その点は申し訳なかったなと思います"
+        }
+      ]
+    },
+    {
+      "report_date": "2026-02-07",
+      "issue": "軽微なトラブルあり（詳細不明）",
+      "severity": "low",
+      "recurrence_risk": "unknown",
+      "evidence": [
+        {
+          "report_date": "2026-02-07",
+          "quote": "トラブル: 軽微なものあり"
+        }
+      ]
+    },
+    {
+      "report_date": "2026-02-11",
+      "issue": "軽微なトラブルあり（詳細不明）",
+      "severity": "low",
+      "recurrence_risk": "unknown",
+      "evidence": [
+        {
+          "report_date": "2026-02-11",
+          "quote": "トラブル: 軽微なものあり"
+        }
+      ]
+    }
+  ],
+  "special_handling": [
+    {
+      "report_date": "2026-02-07",
+      "category": "allergy",
+      "detail": "お客様のご要望でアレルギー対応の説明を厨房に伝えた",
+      "evidence": [
+        {
+          "report_date": "2026-02-07",
+          "quote": "お客様のご要望でアレルギー対応の説明を厨房に伝えに行ったり"
+        }
+      ]
+    },
+    {
+      "report_date": "2026-02-07",
+      "category": "kids",
+      "detail": "お子様用の椅子を複数脚出した",
+      "evidence": [
+        {
+          "report_date": "2026-02-07",
+          "quote": "お子様用の椅子を何脚か出したりしていました"
+        }
+      ]
+    }
+  ],
+  "execution": {
+    "completed": [
+      "ホール接客（2026-02-07, 2026-02-11）",
+      "キッチン業務（2026-02-07）",
+      "ドリンク作成（2026-02-11）",
+      "片付け（2026-02-07, 2026-02-11）",
+      "仕込み（2026-02-11）",
+      "フロアのモップがけ（2026-02-07）",
+      "翌日の準備（2026-02-07）
