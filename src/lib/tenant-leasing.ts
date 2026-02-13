@@ -51,6 +51,7 @@ export interface Lead {
 }
 
 // --- アウトリーチステータス ---
+import type { OutreachStatus } from "./tenant-leasing-constants";
 export type { OutreachStatus } from "./tenant-leasing-constants";
 export { OUTREACH_STATUS_LABELS } from "./tenant-leasing-constants";
 
