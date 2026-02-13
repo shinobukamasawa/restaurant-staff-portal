@@ -1,6 +1,22 @@
 import fs from "fs/promises";
 import path from "path";
 
+// ---------- Storage abstraction ----------
+// ローカル: ファイルシステム / Vercel: Upstash Redis
+const isVercel = !!process.env.UPSTASH_REDIS_REST_URL;
+
+let redis: import("@upstash/redis").Redis | null = null;
+
+async function getRedis() {
+  if (redis) return redis;
+  const { Redis } = await import("@upstash/redis");
+  redis = new Redis({
+    url: process.env.UPSTASH_REDIS_REST_URL!,
+    token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+  });
+  return redis;
+}
+
 const DATA_DIR = path.join(process.cwd(), "data");
 
 async function ensureDataDir() {
@@ -11,6 +27,32 @@ async function ensureDataDir() {
   }
 }
 
+async function readJson<T>(filePath: string, key: string, fallback: T[]): Promise<T[]> {
+  if (isVercel) {
+    const kv = await getRedis();
+    const data = await kv.get<T[]>(key);
+    return data ?? fallback;
+  }
+  await ensureDataDir();
+  try {
+    const raw = await fs.readFile(filePath, "utf-8");
+    return JSON.parse(raw);
+  } catch {
+    return fallback;
+  }
+}
+
+async function writeJson<T>(filePath: string, key: string, data: T[]): Promise<void> {
+  if (isVercel) {
+    const kv = await getRedis();
+    await kv.set(key, data);
+    return;
+  }
+  await ensureDataDir();
+  await fs.writeFile(filePath, JSON.stringify(data, null, 2), "utf-8");
+}
+
+// ---------- File paths & KV keys ----------
 const REPORTS_FILE = path.join(DATA_DIR, "reports.json");
 const SHIFTS_FILE = path.join(DATA_DIR, "shifts.json");
 const MANAGER_REPORTS_FILE = path.join(DATA_DIR, "manager-reports.json");
@@ -24,6 +66,7 @@ const TIMESLOT_REPORTS_FILE = path.join(DATA_DIR, "timeslot-reports.json");
 const REPRESENTATIVE_ASSIGNMENTS_FILE = path.join(DATA_DIR, "representative-assignments.json");
 const TIMESLOTS_FILE = path.join(DATA_DIR, "timeslots.json");
 
+// ---------- Types ----------
 export interface ZeninReport {
   id: string;
   date: string;
@@ -139,202 +182,103 @@ export interface ManagerReport {
   createdAt: string;
 }
 
+// ---------- CRUD functions ----------
 export async function readReports(): Promise<Report[]> {
-  await ensureDataDir();
-  try {
-    const raw = await fs.readFile(REPORTS_FILE, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    return [];
-  }
+  return readJson<Report>(REPORTS_FILE, "reports", []);
 }
-
 export async function writeReports(reports: Report[]): Promise<void> {
-  await ensureDataDir();
-  await fs.writeFile(REPORTS_FILE, JSON.stringify(reports, null, 2), "utf-8");
+  return writeJson(REPORTS_FILE, "reports", reports);
 }
 
 export async function readShifts(): Promise<ShiftImport[]> {
-  await ensureDataDir();
-  try {
-    const raw = await fs.readFile(SHIFTS_FILE, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    return [];
-  }
+  return readJson<ShiftImport>(SHIFTS_FILE, "shifts", []);
 }
-
 export async function writeShifts(imports: ShiftImport[]): Promise<void> {
-  await ensureDataDir();
-  await fs.writeFile(SHIFTS_FILE, JSON.stringify(imports, null, 2), "utf-8");
+  return writeJson(SHIFTS_FILE, "shifts", imports);
 }
 
 export async function readManagerReports(): Promise<ManagerReport[]> {
-  await ensureDataDir();
-  try {
-    const raw = await fs.readFile(MANAGER_REPORTS_FILE, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    return [];
-  }
+  return readJson<ManagerReport>(MANAGER_REPORTS_FILE, "manager-reports", []);
 }
-
 export async function writeManagerReports(reports: ManagerReport[]): Promise<void> {
-  await ensureDataDir();
-  await fs.writeFile(MANAGER_REPORTS_FILE, JSON.stringify(reports, null, 2), "utf-8");
+  return writeJson(MANAGER_REPORTS_FILE, "manager-reports", reports);
 }
 
 export async function readNotices(): Promise<Notice[]> {
-  await ensureDataDir();
-  try {
-    const raw = await fs.readFile(NOTICES_FILE, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    return [];
-  }
+  return readJson<Notice>(NOTICES_FILE, "notices", []);
 }
-
 export async function writeNotices(notices: Notice[]): Promise<void> {
-  await ensureDataDir();
-  await fs.writeFile(NOTICES_FILE, JSON.stringify(notices, null, 2), "utf-8");
+  return writeJson(NOTICES_FILE, "notices", notices);
 }
 
 export async function readUsers(): Promise<User[]> {
-  await ensureDataDir();
-  try {
-    const raw = await fs.readFile(USERS_FILE, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    return [];
-  }
+  return readJson<User>(USERS_FILE, "users", []);
+}
+export async function writeUsers(users: User[]): Promise<void> {
+  return writeJson(USERS_FILE, "users", users);
 }
 
-export async function writeUsers(users: User[]): Promise<void> {
-  await ensureDataDir();
-  await fs.writeFile(USERS_FILE, JSON.stringify(users, null, 2), "utf-8");
-}
+const defaultRates: SalesDayRate[] = [
+  { dayOfWeek: 0, label: "日", rate: 100 },
+  { dayOfWeek: 1, label: "月", rate: 100 },
+  { dayOfWeek: 2, label: "火", rate: 100 },
+  { dayOfWeek: 3, label: "水", rate: 100 },
+  { dayOfWeek: 4, label: "木", rate: 100 },
+  { dayOfWeek: 5, label: "金", rate: 100 },
+  { dayOfWeek: 6, label: "土", rate: 100 },
+];
 
 export async function readSalesRates(): Promise<SalesDayRate[]> {
-  await ensureDataDir();
-  try {
-    const raw = await fs.readFile(SALES_RATES_FILE, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    const defaultRates: SalesDayRate[] = [
-      { dayOfWeek: 0, label: "日", rate: 100 },
-      { dayOfWeek: 1, label: "月", rate: 100 },
-      { dayOfWeek: 2, label: "火", rate: 100 },
-      { dayOfWeek: 3, label: "水", rate: 100 },
-      { dayOfWeek: 4, label: "木", rate: 100 },
-      { dayOfWeek: 5, label: "金", rate: 100 },
-      { dayOfWeek: 6, label: "土", rate: 100 },
-    ];
-    return defaultRates;
-  }
+  return readJson<SalesDayRate>(SALES_RATES_FILE, "sales-rates", defaultRates);
 }
-
 export async function writeSalesRates(rates: SalesDayRate[]): Promise<void> {
-  await ensureDataDir();
-  await fs.writeFile(SALES_RATES_FILE, JSON.stringify(rates, null, 2), "utf-8");
+  return writeJson(SALES_RATES_FILE, "sales-rates", rates);
 }
 
 export async function readSalesTargetsMonthly(): Promise<SalesTargetMonthly[]> {
-  await ensureDataDir();
-  try {
-    const raw = await fs.readFile(SALES_TARGETS_MONTHLY_FILE, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    return [];
-  }
+  return readJson<SalesTargetMonthly>(SALES_TARGETS_MONTHLY_FILE, "sales-targets-monthly", []);
 }
-
 export async function writeSalesTargetsMonthly(targets: SalesTargetMonthly[]): Promise<void> {
-  await ensureDataDir();
-  await fs.writeFile(SALES_TARGETS_MONTHLY_FILE, JSON.stringify(targets, null, 2), "utf-8");
+  return writeJson(SALES_TARGETS_MONTHLY_FILE, "sales-targets-monthly", targets);
 }
 
 export async function readSalesDaily(): Promise<SalesDaily[]> {
-  await ensureDataDir();
-  try {
-    const raw = await fs.readFile(SALES_DAILY_FILE, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    return [];
-  }
+  return readJson<SalesDaily>(SALES_DAILY_FILE, "sales-daily", []);
 }
-
 export async function writeSalesDaily(entries: SalesDaily[]): Promise<void> {
-  await ensureDataDir();
-  await fs.writeFile(SALES_DAILY_FILE, JSON.stringify(entries, null, 2), "utf-8");
+  return writeJson(SALES_DAILY_FILE, "sales-daily", entries);
 }
 
 export async function readZeninReports(): Promise<ZeninReport[]> {
-  await ensureDataDir();
-  try {
-    const raw = await fs.readFile(ZENIN_REPORTS_FILE, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    return [];
-  }
+  return readJson<ZeninReport>(ZENIN_REPORTS_FILE, "zenin-reports", []);
 }
-
 export async function writeZeninReports(reports: ZeninReport[]): Promise<void> {
-  await ensureDataDir();
-  await fs.writeFile(ZENIN_REPORTS_FILE, JSON.stringify(reports, null, 2), "utf-8");
+  return writeJson(ZENIN_REPORTS_FILE, "zenin-reports", reports);
 }
 
 export async function readTimeSlotReports(): Promise<TimeSlotReport[]> {
-  await ensureDataDir();
-  try {
-    const raw = await fs.readFile(TIMESLOT_REPORTS_FILE, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    return [];
-  }
+  return readJson<TimeSlotReport>(TIMESLOT_REPORTS_FILE, "timeslot-reports", []);
 }
-
 export async function writeTimeSlotReports(reports: TimeSlotReport[]): Promise<void> {
-  await ensureDataDir();
-  await fs.writeFile(TIMESLOT_REPORTS_FILE, JSON.stringify(reports, null, 2), "utf-8");
+  return writeJson(TIMESLOT_REPORTS_FILE, "timeslot-reports", reports);
 }
 
 export async function readRepresentativeAssignments(): Promise<RepresentativeAssignment[]> {
-  await ensureDataDir();
-  try {
-    const raw = await fs.readFile(REPRESENTATIVE_ASSIGNMENTS_FILE, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    return [];
-  }
+  return readJson<RepresentativeAssignment>(REPRESENTATIVE_ASSIGNMENTS_FILE, "representative-assignments", []);
+}
+export async function writeRepresentativeAssignments(assignments: RepresentativeAssignment[]): Promise<void> {
+  return writeJson(REPRESENTATIVE_ASSIGNMENTS_FILE, "representative-assignments", assignments);
 }
 
-export async function writeRepresentativeAssignments(
-  assignments: RepresentativeAssignment[]
-): Promise<void> {
-  await ensureDataDir();
-  await fs.writeFile(
-    REPRESENTATIVE_ASSIGNMENTS_FILE,
-    JSON.stringify(assignments, null, 2),
-    "utf-8"
-  );
-}
+const defaultSlots: TimeSlot[] = [
+  { id: "lunch", name: "ランチ", sortOrder: 1 },
+  { id: "afternoon", name: "アフタヌーン", sortOrder: 2 },
+  { id: "dinner", name: "ディナー", sortOrder: 3 },
+];
 
 export async function readTimeSlots(): Promise<TimeSlot[]> {
-  await ensureDataDir();
-  try {
-    const raw = await fs.readFile(TIMESLOTS_FILE, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    const defaultSlots: TimeSlot[] = [
-      { id: "lunch", name: "ランチ", sortOrder: 1 },
-      { id: "afternoon", name: "アフタヌーン", sortOrder: 2 },
-      { id: "dinner", name: "ディナー", sortOrder: 3 },
-    ];
-    return defaultSlots;
-  }
+  return readJson<TimeSlot>(TIMESLOTS_FILE, "timeslots", defaultSlots);
 }
-
 export async function writeTimeSlots(slots: TimeSlot[]): Promise<void> {
-  await ensureDataDir();
-  await fs.writeFile(TIMESLOTS_FILE, JSON.stringify(slots, null, 2), "utf-8");
+  return writeJson(TIMESLOTS_FILE, "timeslots", slots);
 }
